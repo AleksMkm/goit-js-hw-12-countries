@@ -12,8 +12,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.js$/,
@@ -37,6 +37,11 @@ module.exports = {
           },
           'img-loader',
         ],
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
       },
       {
         test: /\.hbs$/,
