@@ -1,3 +1,3 @@
 import './main.css';
-
-const debounce = require('lodash.debounce');
+import '@pnotify/core/dist/BrightTheme.css';
+import './js/script.js';

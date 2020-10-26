@@ -1,3 +1,7 @@
-export default function fetchCountries(searchQuery) {
-  console.log('tbd');
+function fetchCountries(name) {
+  return fetch(`https://restcountries.eu/rest/v2/name/${name}`).then(r =>
+    r.json(),
+  );
 }
+
+export default { fetchCountries };
