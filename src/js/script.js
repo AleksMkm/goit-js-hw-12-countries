@@ -11,13 +11,17 @@ refs.searchFieldEl.addEventListener('input', debounce(onInput, 500));
 
 function onInput(e) {
   const searchQuery = e.target.value;
-  console.log(searchQuery);
 
-  if (!searchQuery) return;
+  if (!searchQuery) {
+    clearMarkup();
+    return;
+  }
 
   API.fetchCountries(searchQuery)
     .then(renderMarkup)
-    .catch(error => {
+    .catch(data => {
+      console.log(`imma catch`);
+      clearMarkup();
       errorHandler.throwErrorNotFound();
     });
 }
@@ -31,21 +35,25 @@ function renderMarkup(countries) {
 
   if (countries.length > 1 && countries.length <= 10) {
     console.log(`from 1 to 10`);
-    console.log(countries);
-    renderCountryListMarkup();
+    renderCountryListMarkup(countries);
   }
 
   if (countries.length > 10) {
+    clearMarkup();
     errorHandler.throwErrorTooMany();
   }
 }
 
-function renderCountryListMarkup() {
-  const markup = '<div>CountryListMarkup</div>';
+function renderCountryListMarkup(data) {
+  const markup = countriesListTpl(data);
   refs.cardContainerEl.innerHTML = markup;
 }
 
 function renderCountryCardMarkup() {
   const markup = '<div>CountryCardMarkup</div>';
   refs.cardContainerEl.innerHTML = markup;
+}
+
+function clearMarkup() {
+  refs.cardContainerEl.innerHTML = '';
 }

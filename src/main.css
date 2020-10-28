@@ -36,3 +36,25 @@ body {
   top: 0;
   right: 0;
 }
+
+.countries-list {
+  padding-left: 0;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countries-list__item {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 5px;
+
+  color: darkblue;
+}
+
+.country-name {
+  margin-right: 5px;
+}
