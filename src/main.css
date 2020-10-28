@@ -30,3 +30,9 @@ body {
 .country-input:focus {
   border: 3px solid darkorange;
 }
+
+.pnotify {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
