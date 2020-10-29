@@ -1,8 +1,7 @@
 import API from './fetchCountries';
 import errorHandler from './error-handler';
 import getRefs from './get-refs';
-import countriesListTpl from '../templates/countries-list.hbs';
-import countryCardTpl from '../templates/country-card.hbs';
+import markup from './markup-render';
 
 const refs = getRefs();
 const debounce = require('lodash.debounce');
@@ -13,47 +12,14 @@ function onInput(e) {
   const searchQuery = e.target.value;
 
   if (!searchQuery) {
-    clearMarkup();
+    markup.clearMarkup();
     return;
   }
 
   API.fetchCountries(searchQuery)
-    .then(renderMarkup)
+    .then(markup.renderMarkup)
     .catch(data => {
-      console.log(`imma catch`);
-      clearMarkup();
+      markup.clearMarkup();
       errorHandler.throwErrorNotFound();
     });
-}
-
-function renderMarkup(countries) {
-  if (countries.length === 1) {
-    console.log(`yay 1`);
-    console.log(countries);
-    renderCountryCardMarkup(countries);
-  }
-
-  if (countries.length > 1 && countries.length <= 10) {
-    console.log(`from 1 to 10`);
-    renderCountryListMarkup(countries);
-  }
-
-  if (countries.length > 10) {
-    clearMarkup();
-    errorHandler.throwErrorTooMany();
-  }
-}
-
-function renderCountryListMarkup(data) {
-  const markup = countriesListTpl(data);
-  refs.cardContainerEl.innerHTML = markup;
-}
-
-function renderCountryCardMarkup(data) {
-  const markup = countryCardTpl(data);
-  refs.cardContainerEl.innerHTML = markup;
-}
-
-function clearMarkup() {
-  refs.cardContainerEl.innerHTML = '';
 }
