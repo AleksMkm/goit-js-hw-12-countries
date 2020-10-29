@@ -30,7 +30,7 @@ function renderMarkup(countries) {
   if (countries.length === 1) {
     console.log(`yay 1`);
     console.log(countries);
-    renderCountryCardMarkup();
+    renderCountryCardMarkup(countries);
   }
 
   if (countries.length > 1 && countries.length <= 10) {
@@ -49,8 +49,8 @@ function renderCountryListMarkup(data) {
   refs.cardContainerEl.innerHTML = markup;
 }
 
-function renderCountryCardMarkup() {
-  const markup = '<div>CountryCardMarkup</div>';
+function renderCountryCardMarkup(data) {
+  const markup = countryCardTpl(data);
   refs.cardContainerEl.innerHTML = markup;
 }
 

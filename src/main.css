@@ -58,3 +58,22 @@ body {
 .country-name {
   margin-right: 5px;
 }
+
+.country-card {
+  display: flex;
+  justify-content: center;
+}
+
+.country-card__content {
+  margin-right: 50px;
+
+  text-align: left;
+}
+
+.country-card__languages {
+  padding: 0;
+}
+
+.country-card__languages li {
+  margin-left: 20px;
+}
