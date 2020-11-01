@@ -7,15 +7,18 @@ const refs = getRefs();
 function renderMarkup(data) {
   if (data.length === 1) {
     renderCountryCardMarkup(data);
+    return;
   }
 
   if (data.length > 1 && data.length <= 10) {
     renderCountryListMarkup(data);
+    return;
   }
 
   if (data.length > 10) {
     clearMarkup();
     errorHandler.throwErrorTooMany();
+    return;
   }
 }
 
